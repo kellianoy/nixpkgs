@@ -7791,7 +7791,10 @@ with pkgs;
     autoreconfHook = buildPackages.autoreconfHook269;
   };
   lxcfs = callPackage ../os-specific/linux/lxcfs { };
-  lxd = callPackage ../tools/admin/lxd { };
+
+  lxdPackages = recurseIntoAttrs (callPackage ../tools/admin/lxd { });
+  lxd = lxdPackages.lxd;
+  lxd-agent = lxdPackages.lxd-agent;
 
   lxd-image-server = callPackage ../tools/virtualization/lxd-image-server { };
 
