@@ -280,6 +280,7 @@ in
   loki = handleTest ./loki.nix {};
   lvm2 = handleTest ./lvm2 {};
   lxd = handleTest ./lxd.nix {};
+  lxd-useQemu = handleTest ./lxd-useQemu.nix {};
   lxd-image = handleTest ./lxd-image.nix {};
   lxd-nftables = handleTest ./lxd-nftables.nix {};
   lxd-image-server = handleTest ./lxd-image-server.nix {};

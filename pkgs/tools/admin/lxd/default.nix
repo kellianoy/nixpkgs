@@ -1,10 +1,7 @@
 { lib, linkFarm, fetchurl, callPackage, qemu_kvm, qemu-utils, OVMFFull, bash
-, installShellFiles, useQemu ? false }:
+, installShellFiles, useQemu ? false, version ? "5.0.0" }:
 
 let
-  pname = "lxd";
-  version = "5.0.0";
-
   src = fetchurl {
     url = "https://linuxcontainers.org/downloads/lxd/lxd-${version}.tar.gz";
     sha256 = "sha256-qZt+37UsgZWy3kmIhE0y1zvmQm9s/yhAglBReyOP3vk=";
@@ -26,13 +23,10 @@ let
       path = "${OVMFFull.fd}/FV/OVMF_VARS.fd";
     }
   ];
-
-  lxd = callPackage ./lxd.nix {
+in
+  callPackage ./lxd.nix {
     inherit src version;
     extraBinPath = lib.optionals useQemu [ qemu-utils qemu_kvm lxd-agent ];
     LXD_OVMF_PATH = lib.optionalString useQemu "${firmware}/share/OVMF";
-  };
-in {
-  inherit lxd lxd-agent;
-}
+  }
 

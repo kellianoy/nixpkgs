@@ -55,13 +55,16 @@ in buildGo118Package rec {
     lxc
     acl
     libcap
-    dqlite.dev
-    raft-canonical.dev
+    dqlite
+    raft-canonical
     sqlite-replication
     udev.dev
   ];
 
-  passthru.tests.lxd = nixosTests.lxd;
+  passthru.tests = {
+    lxd = nixosTests.lxd;
+    lxd-useQemu = nixosTests.lxd-useQemu;
+  };
 
   meta = with lib; {
     description = "Daemon based on liblxc offering a REST API to manage containers";

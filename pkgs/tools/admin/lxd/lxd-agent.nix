@@ -1,6 +1,6 @@
-{ lib, buildGoPackage, src, version }:
+{ lib, buildGo118Package, src, version }:
 
-buildGoPackage rec {
+buildGo118Package rec {
   pname = "lxd-agent";
   inherit version src;
 
@@ -22,3 +22,4 @@ buildGoPackage rec {
     platforms = platforms.linux;
   };
 }
+
