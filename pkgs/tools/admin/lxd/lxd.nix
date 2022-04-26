@@ -48,7 +48,7 @@ in buildGo118Package rec {
     wrapProgram $out/bin/lxd --prefix PATH : ${binPath} \
       --set LXD_OVMF_PATH '${LXD_OVMF_PATH}'
   '';
-
+  
   nativeBuildInputs = [ makeWrapper installShellFiles pkg-config ];
 
   buildInputs = [
