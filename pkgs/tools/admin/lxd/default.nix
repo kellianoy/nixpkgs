@@ -8,7 +8,7 @@ let
     sha256 = "sha256-qZt+37UsgZWy3kmIhE0y1zvmQm9s/yhAglBReyOP3vk=";
   };
 
-  lxdAgent = callPackage ./lxd-agent.nix {
+  lxd-agent = callPackage ./lxd-agent.nix {
     inherit src version;
   };
 
@@ -30,7 +30,7 @@ let
 in
   callPackage ./lxd.nix {
     inherit src version;
-    extraBinPath = lib.optionals useQemu [ qemu-utils qemu_kvm ];
+    extraBinPath = lib.optionals useQemu [ qemu-utils qemu_kvm lxd-agent];
     LXD_OVMF_PATH = lib.optionalString useQemu "${firmware}/share/OVMF";
   }
 

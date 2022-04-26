@@ -8,20 +8,17 @@ buildGo118Package rec {
 
   ldflags = [ "-extldflags=-static" "-s" "-w" ];
 
-  buildTags = ["static"];
-
   subPackages = [ "lxd-agent" ];
 
   preConfigure = ''
     export CGO_ENABLED=0
-    go install -v -tags agent, netgo ./lxd-agent
   '';
 
   meta = with lib; {
     description = "Agent allowing LXD to access VM functionalities";
     homepage = "https://linuxcontainers.org/lxd/";
     license = licenses.asl20;
-    maintainers = with maintainers; [ fpletz marsam astralbijection kellianoy ];
+    maintainers = with maintainers; [ fpletz marsam astralbijection ];
     platforms = platforms.linux;
   };
 }
