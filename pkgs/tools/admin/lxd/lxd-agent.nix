@@ -8,13 +8,10 @@ buildGo118Package rec {
 
   ldflags = [ "-extldflags=-static" "-s" "-w" ];
 
-  buildTags = ["static"];
-
   subPackages = [ "lxd-agent" ];
 
   preConfigure = ''
     export CGO_ENABLED=0
-    go install -v -tags agent, netgo ./lxd-agent
   '';
 
   meta = with lib; {
