@@ -8,8 +8,11 @@ buildGo118Package rec {
 
   buildCommand = ''
     mkdir -p $out/bin
-    ln -s ${qemu_kvm}/libexec/virtiofsd $out/bin/
-    ln -s ${qemu_kvm}/libexec/virtfs-proxy-helper $out/bin/
+    cd ${qemu_kvm}
+    cd ../
+    ln -s ./libexec/virtiofsd $out/bin/
+    ln -s ./libexec/virtfs-proxy-helper $out/bin/
+    export PATH=$out/bin:$PATH
   '';
   
   meta = with lib; {
